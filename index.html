@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mi Calculadora de Macros</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="estadisticas_semanales.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>🔥 MI CALCULADORA DE MACROS</h1>
+
+
+<nav class="navegacion-rapida" aria-label="Navegación principal">
+    <a href="#inicio" data-vista="inicio" aria-current="page">
+        <span>🏠</span>
+        <span>INICIO</span>
+    </a>
+
+    <a href="#mis-comidas" data-vista="comidas">
+        <span>🍽️</span>
+        <span>MIS COMIDAS</span>
+    </a>
+
+<a href="#mis-alimentos" data-vista="alimentos">
+    <span>🥑</span><span>MIS ALIMENTOS</span>
+</a>
+
+
+    <a href="#mis-metas" data-vista="metas">
+        <span>🎯</span>
+        <span>MIS METAS</span>
+    </a>
+
+    <a href="#historial" data-vista="historial">
+        <span>📅</span>
+        <span>HISTORIAL</span>
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     DASHBOARD NUTRICIONAL
+========================== -->
+
+<section class="dashboard" id="dashboard" data-vista-contenido="inicio">
+
+    <div class="dashboard-encabezado">
+        <div>
+            <p class="dashboard-etiqueta">TU RESUMEN NUTRICIONAL</p>
+            <h2>Tu día, de un vistazo🕸️</h2>
+            <p id="dashboardFecha">Resumen de tu alimentación</p>
+        </div>
+
+        <div class="dashboard-icono" aria-hidden="true">✦</div>
+    </div>
+
+    <!-- TARJETA PRINCIPAL: CALORÍAS -->
+
+    <article class="dashboard-calorias">
+
+        <div class="dashboard-tarjeta-encabezado">
+            <span class="dashboard-icono-macro">🔥</span>
+            <span>Calorías consumidas</span>
+        </div>
+
+        <div class="dashboard-cifra-principal">
+            <strong id="dashboardCalorias">0</strong>
+            <span>kcal</span>
+        </div>
+
+        <div class="dashboard-meta-linea">
+            <span>Meta diaria</span>
+            <strong id="dashboardMetaCalorias">0 kcal</strong>
+        </div>
+
+        <div
+            class="dashboard-barra-fondo"
+            role="progressbar"
+            aria-label="Progreso de calorías"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="dashboardProgresoCalorias"
+        >
+            <div class="dashboard-barra" id="dashboardBarraCalorias"></div>
+        </div>
+
+        <div class="dashboard-pie-calorias">
+            <span id="dashboardPorcentajeCalorias">0% de tu meta</span>
+            <span id="dashboardRestanteCalorias">Configura tu meta</span>
+        </div>
+
+    </article>
+
+    <!-- TARJETAS DE MACRONUTRIENTES -->
+
+    <div class="dashboard-macros">
+
+        <article class="dashboard-macro tarjeta-proteina">
+            <div class="dashboard-macro-encabezado">
+                <span>🥩</span>
+                <span>Proteína</span>
+            </div>
+
+            <strong class="dashboard-macro-cifra" id="dashboardProteina">0</strong>
+            <span class="dashboard-unidad">gramos consumidos</span>
+
+            <div class="dashboard-meta-linea">
+                <span>Objetivo</span>
+                <strong id="dashboardMetaProteina">0 g</strong>
+            </div>
+
+            <div
+                class="dashboard-barra-fondo"
+                role="progressbar"
+                aria-label="Progreso de proteína"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                id="dashboardProgresoProteina"
+            >
+                <div class="dashboard-barra" id="dashboardBarraProteina"></div>
+            </div>
+
+            <p class="dashboard-restante" id="dashboardRestanteProteina">
+                Configura tus metas
+            </p>
+        </article>
+
+        <article class="dashboard-macro tarjeta-carbohidratos">
+            <div class="dashboard-macro-encabezado">
+                <span>🍚</span>
+                <span>Carbohidratos</span>
+            </div>
+
+            <strong class="dashboard-macro-cifra" id="dashboardCarbohidratos">0</strong>
+            <span class="dashboard-unidad">gramos consumidos</span>
+
+            <div class="dashboard-meta-linea">
+                <span>Objetivo</span>
+                <strong id="dashboardMetaCarbohidratos">0 g</strong>
+            </div>
+
+            <div
+                class="dashboard-barra-fondo"
+                role="progressbar"
+                aria-label="Progreso de carbohidratos"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                id="dashboardProgresoCarbohidratos"
+            >
+                <div class="dashboard-barra" id="dashboardBarraCarbohidratos"></div>
+            </div>
+
+            <p class="dashboard-restante" id="dashboardRestanteCarbohidratos">
+                Configura tus metas
+            </p>
+        </article>
+
+        <article class="dashboard-macro tarjeta-grasas">
+            <div class="dashboard-macro-encabezado">
+                <span>🥑</span>
+                <span>Grasas</span>
+            </div>
+
+            <strong class="dashboard-macro-cifra" id="dashboardGrasas">0</strong>
+            <span class="dashboard-unidad">gramos consumidos</span>
+
+            <div class="dashboard-meta-linea">
+                <span>Objetivo</span>
+                <strong id="dashboardMetaGrasas">0 g</strong>
+            </div>
+
+            <div
+                class="dashboard-barra-fondo"
+                role="progressbar"
+                aria-label="Progreso de grasas"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                id="dashboardProgresoGrasas"
+            >
+                <div class="dashboard-barra" id="dashboardBarraGrasas"></div>
+            </div>
+
+            <p class="dashboard-restante" id="dashboardRestanteGrasas">
+                Configura tus metas
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- RESUMEN HISTÓRICO DEL DÍA SELECCIONADO -->
+<section class="resumen-historico" id="resumenHistorico" data-vista-contenido="historial">
+    <div class="resumen-historico-encabezado">
+        <div>
+            <p class="resumen-historico-etiqueta">TU HISTORIAL</p>
+            <h2>Resumen del día</h2>
+            <p id="resumenHistoricoFecha">Consulta tus registros</p>
+        </div>
+        <span class="resumen-historico-icono">📊</span>
+    </div>
+
+    <div class="resumen-historico-registros">
+        <span>🍽️ Alimentos registrados</span>
+        <strong id="resumenHistoricoCantidad">0</strong>
+    </div>
+
+    <div class="resumen-historico-grid">
+        <article class="resumen-historico-item">
+            <span>🔥 Calorías</span>
+            <strong id="resumenHistoricoCalorias">0 kcal</strong>
+            <p id="resumenHistoricoMetaCalorias">Sin meta</p>
+        </article>
+
+        <article class="resumen-historico-item">
+            <span>🥩 Proteína</span>
+            <strong id="resumenHistoricoProteina">0 g</strong>
+            <p id="resumenHistoricoMetaProteina">Sin meta</p>
+        </article>
+
+        <article class="resumen-historico-item">
+            <span>🍚 Carbohidratos</span>
+            <strong id="resumenHistoricoCarbohidratos">0 g</strong>
+            <p id="resumenHistoricoMetaCarbohidratos">Sin meta</p>
+        </article>
+
+        <article class="resumen-historico-item">
+            <span>🥑 Grasas</span>
+            <strong id="resumenHistoricoGrasas">0 g</strong>
+            <p id="resumenHistoricoMetaGrasas">Sin meta</p>
+        </article>
+    </div>
+</section>
+
+
+<section class="historial-dia" id="historial" data-vista-contenido="historial">
+    <div class="historial-encabezado">
+        <span class="historial-icono">📅</span>
+        <div>
+            <h2>Mi historial de alimentación</h2>
+            <p>Explora tus registros día por día</p>
+        </div>
+    </div>
+
+    <div class="navegacion-fechas">
+        <button type="button" id="btnDiaAnterior"
+                aria-label="Consultar día anterior">
+            ←
+        </button>
+
+        <div class="campo">
+            <label for="selectorFecha">Fecha seleccionada</label>
+            <input type="date" id="selectorFecha">
+        </div>
+
+        <button type="button" id="btnDiaSiguiente"
+                aria-label="Consultar día siguiente">
+            →
+        </button>
+    </div>
+
+    <p id="fechaActualTexto" aria-live="polite">
+        Consultando alimentación del día...
+    </p>
+
+
+<!-- CALENDARIO MENSUAL -->
+<div class="calendario-mensual" id="calendarioMensual">
+
+    <div class="calendario-encabezado">
+        <button
+            type="button"
+            id="btnMesAnterior"
+            aria-label="Mes anterior"
+        >‹</button>
+
+        <div class="calendario-titulo">
+            <h3 id="calendarioMesAnio">Octubre 2026</h3>
+            <p>Tu alimentación, día a día</p>
+        </div>
+
+        <button
+            type="button"
+            id="btnMesSiguiente"
+            aria-label="Mes siguiente"
+        >›</button>
+    </div>
+
+    <div class="calendario-dias-semana" aria-hidden="true">
+        <span>L</span>
+        <span>M</span>
+        <span>X</span>
+        <span>J</span>
+        <span>V</span>
+        <span>S</span>
+        <span>D</span>
+    </div>
+
+    <div
+        class="calendario-dias"
+        id="calendarioDias"
+        aria-label="Días del mes"
+    ></div>
+
+    <div class="calendario-leyenda">
+        <span class="calendario-punto registrado"></span>
+        Día con registros
+        <span class="calendario-punto seleccionado"></span>
+        Día seleccionado
+    </div>
+
+</div>
+<!-- FIN DEL CALENDARIO MENSUAL -->
+
+
+<!-- ESTADÍSTICAS DEL MES -->
+<div class="estadisticas-mensuales" id="estadisticasMensuales">
+
+    <div class="estadisticas-encabezado">
+        <div>
+            <h3>📊 Resumen mensual</h3>
+            <p id="estadisticasMesTexto">
+                Tus datos del mes
+            </p>
+        </div>
+    </div>
+
+    <div class="estadisticas-grid">
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">📅</span>
+            <p>Días registrados</p>
+            <strong id="estadisticaDias">0</strong>
+            <small>días con alimentos</small>
+        </article>
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">🔥</span>
+            <p>Calorías totales</p>
+            <strong id="estadisticaCalorias">0</strong>
+            <small>kcal en el mes</small>
+        </article>
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">📈</span>
+            <p>Promedio diario</p>
+            <strong id="estadisticaPromedio">0</strong>
+            <small>kcal por día registrado</small>
+        </article>
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">🥩</span>
+            <p>Proteínas</p>
+            <strong id="estadisticaProteinas">0</strong>
+            <small>gramos en el mes</small>
+        </article>
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">🍚</span>
+            <p>Carbohidratos</p>
+            <strong id="estadisticaCarbohidratos">0</strong>
+            <small>gramos en el mes</small>
+        </article>
+
+        <article class="estadistica-card">
+            <span class="estadistica-icono">🥑</span>
+            <p>Grasas</p>
+            <strong id="estadisticaGrasas">0</strong>
+            <small>gramos en el mes</small>
+        </article>
+
+    </div>
+</div>
+
+
+<!-- GRAFICA MENSUAL DE CALORIAS -->
+<div class="grafica-mensual" id="graficaMensual">
+  <div class="grafica-encabezado">
+    <h3>📈 Calorías por día</h3>
+    <p id="graficaMesTexto">Tu progreso mensual</p>
+  </div>
+
+  <div
+    class="grafica-contenido"
+    id="graficaCalorias"
+    aria-label="Gráfica de calorías registradas por día"
+  ></div>
+</div>
+
+    <button type="button" id="btnVolverHoy">
+        📍 Volver a hoy
+    </button>
+</section>
+
+<div class="mensaje-inteligente" id="mensajeInteligente" aria-live="polite" data-vista-contenido="inicio">
+    <span class="mensaje-icono" id="mensajeIcono">💙</span>
+
+    <div class="mensaje-contenido">
+        <h3 id="mensajeTitulo">¡Vamos paso a paso!</h3>
+        <p id="mensajeTexto">
+            Registra tus alimentos para ver tu progreso diario.
+        </p>
+    </div>
+</div>
+
+
+        <!-- =========================
+             AGREGAR ALIMENTO
+        ========================== -->
+
+
+<!-- =========================
+     CALCULADORA DE ALIMENTOS
+========================== -->
+
+<section
+    class="calculadora"
+    id="agregar-alimentos"
+    data-vista-contenido="comidas"
+>
+    <h2>🍽️ Agregar alimentos a mi día</h2>
+
+    <div class="campo">
+        <label for="tipoComida">¿A qué comida pertenece?</label>
+        <select id="tipoComida">
+            <option value="desayuno">🌅 Desayuno</option>
+            <option value="comida" selected>🍛 Comida</option>
+            <option value="cena">🌙 Cena</option>
+            <option value="colacion">🍎 Colación</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="categoria">Categoría</label>
+        <select id="categoria">
+            <option value="">Selecciona una categoría</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="buscarAlimento">Buscar alimento</label>
+        <input
+            type="search"
+            id="buscarAlimento"
+            placeholder="Escribe el nombre del alimento..."
+        >
+    </div>
+
+    <div class="campo">
+        <label for="alimento">Alimento</label>
+        <select id="alimento">
+            <option value="">Selecciona un alimento</option>
+        </select>
+    </div>
+
+    <div class="campo">
+        <label for="cantidad">Cantidad</label>
+        <input
+            type="number"
+            id="cantidad"
+            min="0.01"
+            step="any"
+            placeholder="Ej. 150"
+        >
+    </div>
+
+    <div class="campo">
+        <label for="unidad">Unidad de cantidad</label>
+        <input
+            type="text"
+            id="unidad"
+            value="g"
+            readonly
+            aria-label="Unidad de cantidad seleccionada"
+        >
+    </div>
+
+    <div class="botones-calculadora">
+        <button type="button" id="btnCalcular">
+            🧮 Calcular macros
+        </button>
+
+        <button type="button" id="btnAgregar">
+            ➕ Agregar a mi comida
+        </button>
+    </div>
+</section>
+
+
+<!-- =========================
+     MIS ALIMENTOS
+========================== -->
+
+<section
+    class="mis-alimentos"
+    id="mis-alimentos"
+    data-vista-contenido="alimentos"
+>
+    <h2>🥑 Mis alimentos</h2>
+
+    <p>
+        Administra tus categorías y personaliza tu biblioteca
+        de alimentos.
+    </p>
+
+    <!-- ADMINISTRACIÓN DE CATEGORÍAS -->
+
+    <section id="administrarCategorias">
+        <h3>🦇 Mis categorías</h3>
+
+        <div class="campo">
+            <label for="nombreNuevaCategoria">
+                Nombre de la nueva categoría
+            </label>
+            <input
+                type="text"
+                id="nombreNuevaCategoria"
+                placeholder="Ej. Bebidas"
+                maxlength="50"
+            >
+        </div>
+
+        <button type="button" id="btnCrearCategoria">
+            Crear categoría
+        </button>
+
+        <div class="campo">
+            <label for="categoriaAEditar">
+                Selecciona una categoría
+            </label>
+            <select id="categoriaAEditar">
+                <option value="">Selecciona una categoría</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="nuevoNombreCategoria">
+                Nuevo nombre
+            </label>
+            <input
+                type="text"
+                id="nuevoNombreCategoria"
+                placeholder="Escribe el nuevo nombre"
+                maxlength="50"
+            >
+        </div>
+
+        <button type="button" id="btnEditarCategoria">
+            🖊️ Renombrar categoría
+        </button>
+
+        <button type="button" id="btnEliminarCategoria">
+            🗑️ Eliminar categoría
+        </button>
+
+        <div class="campo">
+            <label for="categoriaDestino">
+                Mover los alimentos a esta categoría
+            </label>
+            <select id="categoriaDestino">
+                <option value="">
+                    Selecciona una categoría de destino
+                </option>
+            </select>
+        </div>
+
+        <button type="button" id="btnMoverAlimentos">
+            📦 Mover alimentos y eliminar categoría
+        </button>
+
+        <p id="mensajeCategorias" role="status"></p>
+    </section>
+
+    <!-- CREAR ALIMENTO -->
+
+    <div class="nuevo-alimento">
+        <h3>➕ Agregar nuevo alimento</h3>
+
+        <div class="campo">
+            <label for="nuevoNombre">Nombre del alimento</label>
+            <input
+                type="text"
+                id="nuevoNombre"
+                placeholder="Ej. Jamón de pavo"
+            >
+        </div>
+
+        <div class="campo">
+            <label for="nuevaCategoria">Categoría</label>
+            <select id="nuevaCategoria">
+                <option value="">Selecciona una categoría</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="nuevaUnidad">Tipo de cantidad</label>
+            <select id="nuevaUnidad">
+                <option value="100g">Por 100 g</option>
+                <option value="pieza">Por pieza</option>
+                <option value="2piezas">Por 2 piezas</option>
+            </select>
+        </div>
+
+        <div class="metas-grid">
+            <div class="meta">
+                <label for="nuevasCalorias">Calorías</label>
+                <input
+                    type="number"
+                    id="nuevasCalorias"
+                    min="0"
+                    step="0.01"
+                    placeholder="0"
+                >
+                <span>kcal</span>
+            </div>
+
+            <div class="meta">
+                <label for="nuevaProteina">Proteína</label>
+                <input
+                    type="number"
+                    id="nuevaProteina"
+                    min="0"
+                    step="0.01"
+                    placeholder="0"
+                >
+                <span>g</span>
+            </div>
+
+            <div class="meta">
+                <label for="nuevosCarbohidratos">
+                    Carbohidratos
+                </label>
+                <input
+                    type="number"
+                    id="nuevosCarbohidratos"
+                    min="0"
+                    step="0.01"
+                    placeholder="0"
+                >
+                <span>g</span>
+            </div>
+
+            <div class="meta">
+                <label for="nuevasGrasas">Grasas</label>
+                <input
+                    type="number"
+                    id="nuevasGrasas"
+                    min="0"
+                    step="0.01"
+                    placeholder="0"
+                >
+                <span>g</span>
+            </div>
+        </div>
+
+        <button type="button" id="btnGuardarAlimento">
+            💾 Guardar alimento
+        </button>
+    </div>
+
+    <!-- ELIMINAR ALIMENTO -->
+
+    <div class="eliminar-alimento">
+        <h3>🗑️ Eliminar alimento personalizado</h3>
+
+        <div class="campo">
+            <label for="alimentoEliminar">
+                Selecciona un alimento
+            </label>
+            <select id="alimentoEliminar">
+                <option value="">Selecciona un alimento</option>
+            </select>
+        </div>
+
+        <button
+            type="button"
+            id="btnEliminarAlimento"
+            class="btn-eliminar-alimento"
+        >
+            🗑️ Eliminar alimento
+        </button>
+    </div>
+
+    <!-- EDITAR ALIMENTO -->
+
+    <div class="editar-alimento">
+        <h3>✏️ Editar alimento personalizado</h3>
+
+        <div class="campo">
+            <label for="alimentoEditar">
+                Selecciona un alimento
+            </label>
+            <select id="alimentoEditar">
+                <option value="">Selecciona un alimento</option>
+            </select>
+        </div>
+
+        <button
+            type="button"
+            id="btnEditarAlimento"
+            class="btn-editar-alimento"
+        >
+            ✏️ Editar alimento
+        </button>
+    </div>
+
+    <!-- FORMULARIO DE EDICIÓN -->
+
+    <div
+        id="formularioEdicion"
+        class="formulario-edicion"
+        style="display: none;"
+    >
+        <h3>✏️ Editar datos del alimento</h3>
+
+        <div class="campo">
+            <label for="editarNombre">Nombre</label>
+            <input type="text" id="editarNombre">
+        </div>
+
+        <div class="campo">
+            <label for="editarCategoria">Categoría</label>
+            <select id="editarCategoria">
+                <option value="">Selecciona una categoría</option>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label for="editarUnidad">Tipo de cantidad</label>
+            <select id="editarUnidad">
+                <option value="100g">Por 100 g</option>
+                <option value="pieza">Por pieza</option>
+                <option value="2piezas">Por 2 piezas</option>
+            </select>
+        </div>
+
+        <div class="metas-grid">
+            <div class="meta">
+                <label for="editarCalorias">Calorías</label>
+                <input
+                    type="number"
+                    id="editarCalorias"
+                    min="0"
+                    step="0.01"
+                >
+                <span>kcal</span>
+            </div>
+
+            <div class="meta">
+                <label for="editarProteina">Proteína</label>
+                <input
+                    type="number"
+                    id="editarProteina"
+                    min="0"
+                    step="0.01"
+                >
+                <span>g</span>
+            </div>
+
+            <div class="meta">
+                <label for="editarCarbohidratos">
+                    Carbohidratos
+                </label>
+                <input
+                    type="number"
+                    id="editarCarbohidratos"
+                    min="0"
+                    step="0.01"
+                >
+                <span>g</span>
+            </div>
+
+            <div class="meta">
+                <label for="editarGrasas">Grasas</label>
+                <input
+                    type="number"
+                    id="editarGrasas"
+                    min="0"
+                    step="0.01"
+                >
+                <span>g</span>
+            </div>
+        </div>
+
+        <button type="button" id="btnGuardarEdicion">
+            💾 Guardar cambios
+        </button>
+    </div>
+
+</section>
+
+
+        <!-- =========================
+             RESULTADO DEL ALIMENTO
+        ========================== -->
+
+        <section class="resultados" data-vista-contenido="comidas">
+
+            <h2>📊 Resultado</h2>
+
+
+            <div class="resultado-grid">
+
+                <div class="resultado">
+
+                    <span>🔥</span>
+
+                    <strong id="calorias">
+                        0
+                    </strong>
+
+                    <small>
+                        kcal
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🥩</span>
+
+                    <strong id="proteina">
+                        0
+                    </strong>
+
+                    <small>
+                        proteína
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🍚</span>
+
+                    <strong id="carbohidratos">
+                        0
+                    </strong>
+
+                    <small>
+                        carbohidratos
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🥑</span>
+
+                    <strong id="grasas">
+                        0
+                    </strong>
+
+                    <small>
+                        grasas
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+<!-- =========================
+     REGISTRO DEL DÍA
+========================== -->
+
+<section class="lista-comida" id="mis-comidas" data-vista-contenido="comidas">
+
+    <h2>🍽️ Mi alimentación de hoy</h2>
+
+    <!-- DESAYUNO -->
+    <div class="seccion-comida">
+
+        <button
+            class="encabezado-comida"
+            type="button"
+            aria-expanded="true"
+            aria-controls="contenidoDesayuno"
+            onclick="alternarComida('contenidoDesayuno', this)"
+        >
+            <span>🌅 Desayuno</span>
+            <span class="flecha-comida" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="contenidoDesayuno" class="contenido-comida">
+            <div id="listaDesayuno"></div>
+
+            <div
+                class="subtotal-comida"
+                id="subtotalDesayuno"
+            ></div>
+        </div>
+
+    </div>
+
+    <!-- COMIDA -->
+    <div class="seccion-comida">
+
+        <button
+            class="encabezado-comida"
+            type="button"
+            aria-expanded="true"
+            aria-controls="contenidoComida"
+            onclick="alternarComida('contenidoComida', this)"
+        >
+            <span>🍛 Comida</span>
+            <span class="flecha-comida" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="contenidoComida" class="contenido-comida">
+            <div id="listaComida"></div>
+
+            <div
+                class="subtotal-comida"
+                id="subtotalComida"
+            ></div>
+        </div>
+
+    </div>
+
+    <!-- CENA -->
+    <div class="seccion-comida">
+
+        <button
+            class="encabezado-comida"
+            type="button"
+            aria-expanded="true"
+            aria-controls="contenidoCena"
+            onclick="alternarComida('contenidoCena', this)"
+        >
+            <span>🌙 Cena</span>
+            <span class="flecha-comida" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="contenidoCena" class="contenido-comida">
+            <div id="listaCena"></div>
+
+            <div
+                class="subtotal-comida"
+                id="subtotalCena"
+            ></div>
+        </div>
+
+    </div>
+
+    <!-- COLACIÓN -->
+    <div class="seccion-comida">
+
+        <button
+            class="encabezado-comida"
+            type="button"
+            aria-expanded="true"
+            aria-controls="contenidoColacion"
+            onclick="alternarComida('contenidoColacion', this)"
+        >
+            <span>🍎 Colación</span>
+            <span class="flecha-comida" aria-hidden="true">⌄</span>
+        </button>
+
+        <div id="contenidoColacion" class="contenido-comida">
+            <div id="listaColacion"></div>
+
+            <div
+                class="subtotal-comida"
+                id="subtotalColacion"
+            ></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- =========================
+             TOTALES DEL DÍA
+        ========================== -->
+
+        <section class="totales" data-vista-contenido="comidas">
+
+            <h2>📈 Totales del día</h2>
+
+
+            <div class="resultado-grid">
+
+                <div class="resultado">
+
+                    <span>🔥</span>
+
+                    <strong id="totalCalorias">
+                        0
+                    </strong>
+
+                    <small>
+                        kcal
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🥩</span>
+
+                    <strong id="totalProteina">
+                        0
+                    </strong>
+
+                    <small>
+                        proteína
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🍚</span>
+
+                    <strong id="totalCarbohidratos">
+                        0
+                    </strong>
+
+                    <small>
+                        carbohidratos
+                    </small>
+
+                </div>
+
+
+                <div class="resultado">
+
+                    <span>🥑</span>
+
+                    <strong id="totalGrasas">
+                        0
+                    </strong>
+
+                    <small>
+                        grasas
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             DATOS PERSONALES Y METAS
+        ========================== -->
+
+       <section class="metas" id="mis-metas" data-vista-contenido="metas">
+
+            <h2>👤 Datos personales</h2>
+
+
+            <div class="metas-grid">
+
+                <div class="meta">
+
+                    <label for="peso">
+                        Peso
+                    </label>
+
+                    <input
+                        type="number"
+                        id="peso"
+                        value=""
+                        step="0.1"
+                        min="0"
+                    >
+
+                    <span>
+                        kg
+                    </span>
+
+                </div>
+
+
+                <div class="meta">
+
+                    <label for="altura">
+                        Altura
+                    </label>
+
+                    <input
+                        type="number"
+                        id="altura"
+                        value=""
+                        step="1"
+                        min="0"
+                    >
+
+                    <span>
+                        cm
+                    </span>
+
+                </div>
+
+
+                <div class="meta">
+
+                    <label for="edad">
+                        Edad
+                    </label>
+
+                    <input
+                        type="number"
+                        id="edad"
+                        value=""
+                        min="0"
+                    >
+
+                    <span>
+                        años
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <h2>🔥 Calorías de hoy</h2>
+
+
+            <div class="metas-grid">
+
+                <div class="meta">
+
+                    <label for="metaCalorias">
+                        Calorías
+                    </label>
+
+                    <input
+                        type="number"
+                        id="metaCalorias"
+                        placeholder="2000"
+                        min="0"
+                    >
+
+                    <span>
+                        kcal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <h2>⚙️ Configuración de macros</h2>
+
+
+            <div class="metas-grid">
+
+                <div class="meta">
+
+                    <label for="gramosProteinaKg">
+                        🥩 Proteína
+                    </label>
+
+                    <input
+                        type="number"
+                        id="gramosProteinaKg"
+                        value="1.8"
+                        step="0.1"
+                        min="0"
+                    >
+
+                    <span>
+                        g/kg
+                    </span>
+
+                </div>
+
+
+                <div class="meta">
+
+                    <label for="gramosGrasaKg">
+                        🥑 Grasas
+                    </label>
+
+                    <input
+                        type="number"
+                        id="gramosGrasaKg"
+                        value="0.8"
+                        step="0.1"
+                        min="0"
+                    >
+
+                    <span>
+                        g/kg
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="macro-calculado">
+
+                <span>
+                    🍚 Carbohidratos
+                </span>
+
+                <strong id="carbohidratosCalculados">
+                    Se calcularán automáticamente
+                </strong>
+
+            </div>
+
+
+            <button id="btnCalcularMacros">
+                Calcular macros 🔥
+            </button>
+
+        </section>
+
+
+        <!-- =========================
+             PROGRESO DEL DÍA
+        ========================== -->
+
+        <section class="progreso" data-vista-contenido="metas">
+
+            <h2>
+                📊 Progreso del día
+            </h2>
+
+
+            <!-- CALORÍAS -->
+
+            <div class="progreso-item">
+
+                <div class="progreso-info">
+
+                    <span>
+                        🔥 Calorías
+                    </span>
+
+                    <span id="progresoCaloriasTexto">
+                        0 / 0 kcal
+                    </span>
+
+                </div>
+
+
+                <div class="barra">
+
+                    <div id="barraCalorias"></div>
+
+                </div>
+
+
+                <div
+                    class="progreso-restante"
+                    id="restanteCalorias"
+                ></div>
+
+            </div>
+
+
+            <!-- PROTEÍNA -->
+
+            <div class="progreso-item">
+
+                <div class="progreso-info">
+
+                    <span>
+                        🥩 Proteína
+                    </span>
+
+                    <span id="progresoProteinaTexto">
+                        0 / 0 g
+                    </span>
+
+                </div>
+
+
+                <div class="barra">
+
+                    <div id="barraProteina"></div>
+
+                </div>
+
+
+                <div
+                    class="progreso-restante"
+                    id="restanteProteina"
+                ></div>
+
+            </div>
+
+
+            <!-- CARBOHIDRATOS -->
+
+            <div class="progreso-item">
+
+                <div class="progreso-info">
+
+                    <span>
+                        🍚 Carbohidratos
+                    </span>
+
+                    <span id="progresoCarbohidratosTexto">
+                        0 / 0 g
+                    </span>
+
+                </div>
+
+
+                <div class="barra">
+
+                    <div id="barraCarbohidratos"></div>
+
+                </div>
+
+
+                <div
+                    class="progreso-restante"
+                    id="restanteCarbohidratos"
+                ></div>
+
+            </div>
+
+
+            <!-- GRASAS -->
+
+            <div class="progreso-item">
+
+                <div class="progreso-info">
+
+                    <span>
+                        🥑 Grasas
+                    </span>
+
+                    <span id="progresoGrasasTexto">
+                        0 / 0 g
+                    </span>
+
+                </div>
+
+
+                <div class="barra">
+
+                    <div id="barraGrasas"></div>
+
+                </div>
+
+
+                <div
+                    class="progreso-restante"
+                    id="restanteGrasas"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+<!-- Botón flotante para volver al inicio -->
+<button
+    type="button"
+    id="btnVolverArriba"
+    class="btn-volver-arriba"
+    aria-label="Volver al inicio"
+    title="Volver al inicio"
+>
+    <span aria-hidden="true">↑</span>
+</button>
+
+
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
+
+    <script src="alimentos.js"></script>
+
+    <script src="app.js"></script>
+    <script src="respaldo.js"></script>
+    <script src="estadisticas_semanales.js"></script>
+
+</body>
+
+</html>

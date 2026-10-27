@@ -1,0 +1,514 @@
+/* ==========================================
+   FASE 15 — ESTADÍSTICAS SEMANALES PREMIUM
+   Tema negro + azul, adaptado a la calculadora
+========================================== */
+
+.estadisticas-semanales {
+    min-width: 0;
+    margin: 24px 0;
+    padding: clamp(16px, 2.5vw, 24px);
+    color: #edf5ff;
+    background:
+        radial-gradient(ellipse at top right, rgba(41, 156, 255, 0.08), transparent 46%),
+        linear-gradient(145deg, #101b2a, #080e17);
+    border: 1px solid #263e58;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.semanal-encabezado {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.semanal-encabezado__texto { min-width: 0; }
+.semanal-etiqueta {
+    margin: 0 0 7px;
+    color: #75c8ff;
+    font-size: 0.74rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+}
+
+.semanal-encabezado h2 {
+    margin: 0 0 8px;
+    color: #f2f7ff;
+    font-size: clamp(1.2rem, 2.8vw, 1.55rem);
+    font-weight: 850;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+}
+
+.semanal-descripcion,
+.semanal-grafica__nota,
+.semanal-pie {
+    color: #91a9c4;
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.semanal-descripcion { max-width: 760px; }
+
+.semanal-navegacion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 18px 0;
+    padding: 11px 12px;
+    background: rgba(5, 14, 25, 0.5);
+    border: 1px solid #20364e;
+    border-radius: 12px;
+}
+
+.semanal-boton {
+    min-height: 40px;
+    padding: 9px 12px;
+    color: #b9e0ff;
+    background: #10263b;
+    border: 1px solid #2b5278;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.semanal-boton:hover:not(:disabled) {
+    background: #173a5a;
+    border-color: #399cf0;
+}
+
+.semanal-boton:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+}
+
+.semanal-boton:focus-visible {
+    outline: 2px solid #75c8ff;
+    outline-offset: 3px;
+}
+
+.semanal-rango {
+    color: #e2f1ff;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.semanal-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.semanal-tarjeta {
+    min-width: 0;
+    padding: 15px;
+    background: linear-gradient(145deg, #142338, #0b131f);
+    border: 1px solid #293f58;
+    border-radius: 13px;
+}
+
+.semanal-tarjeta__titulo {
+    margin: 0 0 10px;
+    color: #a9bfd7;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.45;
+}
+
+.semanal-tarjeta__valor {
+    display: block;
+    color: #f2f7ff;
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+    font-weight: 850;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+.semanal-tarjeta__detalle {
+    display: block;
+    margin-top: 8px;
+    color: #8fa9c4;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.semanal-macros {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.semanal-macros .semanal-tarjeta__valor { color: #75c8ff; }
+
+.semanal-tendencias {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.semanal-tendencia {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 14px 15px;
+    background: rgba(6, 16, 28, 0.72);
+    border: 1px solid #233b55;
+    border-radius: 12px;
+}
+
+.semanal-tendencia__titulo {
+    color: #a9bfd7;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.semanal-tendencia__valor {
+    color: #c9e5ff;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.semanal-tendencia.sube { border-color: rgba(71, 153, 225, 0.42); }
+.semanal-tendencia.baja { border-color: rgba(102, 132, 174, 0.35); }
+.semanal-tendencia.neutral,
+.semanal-tendencia.sin-base { border-color: #293f58; }
+
+.semanal-grafica {
+    margin-top: 16px;
+    padding: 17px;
+    background: rgba(5, 14, 25, 0.42);
+    border: 1px solid #263e58;
+    border-radius: 14px;
+}
+
+.semanal-grafica h3 {
+    margin: 0 0 7px;
+    color: #75c8ff;
+    font-size: 1.03rem;
+    font-weight: 800;
+}
+
+.semanal-grafica__nota { margin-bottom: 15px; }
+
+.semanal-grafica__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.semanal-grafica__fila {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) 90px;
+    align-items: center;
+    gap: 10px;
+}
+
+.semanal-grafica__dia {
+    color: #b9cce1;
+    font-size: 0.8rem;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+.semanal-grafica__pista {
+    height: 14px;
+    overflow: hidden;
+    background: #07111e;
+    border: 1px solid #20364e;
+    border-radius: 999px;
+}
+
+.semanal-grafica__barra {
+    height: 100%;
+    min-width: 0;
+    background: linear-gradient(90deg, #1769d2, #299cff, #75c8ff);
+    border-radius: inherit;
+    box-shadow: 0 0 10px rgba(41, 156, 255, 0.16);
+    transition: width 240ms ease;
+}
+
+.semanal-grafica__barra.sobre-meta { background: linear-gradient(90deg, #b36b20, #f0b451); }
+.semanal-grafica__valor {
+    color: #c9e5ff;
+    font-size: 0.77rem;
+    font-weight: 700;
+    text-align: right;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.semanal-pie {
+    margin-top: 14px;
+    font-size: 0.78rem;
+}
+
+@media (max-width: 760px) {
+    .semanal-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+    .estadisticas-semanales { padding: 14px; border-radius: 15px; }
+    .semanal-encabezado { margin-bottom: 14px; }
+    .semanal-navegacion { display: grid; grid-template-columns: 1fr 1fr; }
+    .semanal-rango { grid-column: 1 / -1; grid-row: 1; }
+    .semanal-boton { width: 100%; padding: 9px 7px; font-size: 0.77rem; }
+    .semanal-tarjetas, .semanal-macros, .semanal-tendencias { gap: 8px; }
+    .semanal-tarjeta { padding: 12px; }
+    .semanal-tarjeta__titulo { font-size: 0.77rem; }
+    .semanal-tarjeta__valor { font-size: 1.15rem; }
+    .semanal-grafica { padding: 12px; }
+    .semanal-grafica__fila { grid-template-columns: 48px minmax(0, 1fr) 68px; gap: 7px; }
+    .semanal-grafica__dia { font-size: 0.73rem; }
+    .semanal-grafica__valor { font-size: 0.69rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .semanal-boton, .semanal-grafica__barra { transition: none; }
+}
+
+
+/* ==========================================
+   CORRECCIÓN DE INTEGRACIÓN — VISTA HISTORIAL
+   Limitar anchuras para que el panel no tape otras vistas
+========================================== */
+
+#panelEstadisticasSemanales {
+    display: block;
+    position: relative;
+    inset: auto;
+    float: none;
+    clear: both;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+    box-sizing: border-box;
+    justify-self: stretch;
+    align-self: stretch;
+    flex: 0 1 auto;
+}
+
+#panelEstadisticasSemanales *,
+#panelEstadisticasSemanales *::before,
+#panelEstadisticasSemanales *::after {
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+#panelEstadisticasSemanales .semanal-encabezado {
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+#panelEstadisticasSemanales .semanal-encabezado__texto {
+    flex: 1 1 240px;
+    width: 100%;
+    max-width: 100%;
+}
+
+#panelEstadisticasSemanales .semanal-descripcion {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+}
+
+#panelEstadisticasSemanales .semanal-navegacion,
+#panelEstadisticasSemanales .semanal-tarjetas,
+#panelEstadisticasSemanales .semanal-macros,
+#panelEstadisticasSemanales .semanal-tendencias,
+#panelEstadisticasSemanales .semanal-grafica,
+#panelEstadisticasSemanales .semanal-grafica__lista {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#panelEstadisticasSemanales .semanal-tarjetas {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+#panelEstadisticasSemanales .semanal-grafica__fila {
+    min-width: 0;
+    grid-template-columns: minmax(42px, 62px) minmax(0, 1fr) minmax(58px, 90px);
+}
+
+#panelEstadisticasSemanales .semanal-rango,
+#panelEstadisticasSemanales .semanal-boton,
+#panelEstadisticasSemanales .semanal-grafica__valor {
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+@media (max-width: 1100px) {
+    #panelEstadisticasSemanales .semanal-tarjetas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    #panelEstadisticasSemanales .semanal-tarjetas,
+    #panelEstadisticasSemanales .semanal-macros,
+    #panelEstadisticasSemanales .semanal-tendencias {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* ==========================================
+   FASE 16 — COMPARACIÓN DE PROMEDIOS Y METAS
+   Inserta las tarjetas en el panel semanal existente
+========================================== */
+
+#panelEstadisticasSemanales .semanal-comparacion-metas {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 16px;
+    padding: 17px;
+    color: #edf5ff;
+    background:
+        radial-gradient(ellipse at top right, rgba(41, 156, 255, 0.055), transparent 48%),
+        rgba(5, 14, 25, 0.42);
+    border: 1px solid #263e58;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+#panelEstadisticasSemanales .semanal-comparacion-metas > h3 {
+    margin: 0 0 7px;
+    color: #75c8ff;
+    font-size: 1.03rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+#panelEstadisticasSemanales .semanal-comparacion-metas__nota {
+    margin: 0 0 15px;
+    color: #91a9c4;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+#panelEstadisticasSemanales .semanal-comparacion-metas__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card {
+    min-width: 0;
+    padding: 14px;
+    background: linear-gradient(145deg, #142338, #0b131f);
+    border: 1px solid #293f58;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__titulo {
+    margin: 0 0 9px;
+    color: #dcecff;
+    font-size: 0.91rem;
+    font-weight: 800;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__promedio {
+    margin: 0 0 6px;
+    color: #75c8ff;
+    font-size: 0.94rem;
+    font-weight: 800;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__objetivo {
+    margin: 0 0 10px;
+    color: #a9bfd7;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    font-variant-numeric: tabular-nums;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__pista {
+    width: 100%;
+    height: 11px;
+    margin: 0 0 9px;
+    overflow: hidden;
+    background: #07111e;
+    border: 1px solid #20364e;
+    border-radius: 999px;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__barra {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #1769d2, #299cff, #75c8ff);
+    border-radius: inherit;
+    transition: width 240ms ease;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__barra.sobre-meta {
+    background: linear-gradient(90deg, #b36b20, #f0b451);
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__pista.sin-meta {
+    background: repeating-linear-gradient(135deg, #0b1725, #0b1725 7px, #13263b 7px, #13263b 14px);
+    border-style: dashed;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card__estado {
+    margin: 0;
+    color: #91a9c4;
+    font-size: 0.76rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+#panelEstadisticasSemanales .semanal-meta-card.supera-meta {
+    border-color: rgba(240, 180, 81, 0.42);
+}
+
+@media (max-width: 1100px) {
+    #panelEstadisticasSemanales .semanal-comparacion-metas__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    #panelEstadisticasSemanales .semanal-comparacion-metas {
+        padding: 12px;
+    }
+
+    #panelEstadisticasSemanales .semanal-comparacion-metas__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 9px;
+    }
+
+    #panelEstadisticasSemanales .semanal-meta-card {
+        padding: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #panelEstadisticasSemanales .semanal-meta-card__barra {
+        transition: none;
+    }
+}

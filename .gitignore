@@ -1,0 +1,33 @@
+# Respaldos personales de la calculadora
+respaldo*.json
+
+# Registros y reportes personales de alimentación
+registros-alimentacion-*.csv
+resumen-diario-macros-*.csv
+resumen_semanal.csv
+calorias_por_dia.png
+promedios_macros_por_semana.png
+informe_analisis.txt
+# Archivos CSV: registros personales y reportes
+*.csv
+
+# Variables de entorno y secretos (si se agregan en el futuro)
+.env
+.env.*
+!.env.example
+
+# Python: archivos temporales y entornos virtuales
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuración temporal de editores
+.vscode/
+.idea/
